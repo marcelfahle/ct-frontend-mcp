@@ -1,0 +1,367 @@
+{
+  "boolean": {
+    "description": "A boolean field type that lets Studio users use a toggle to set the field value to true or false",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "default": { "type": "boolean" },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    }
+  },
+  "dataSource": {
+    "description": "A data source field type that lets you specify a data source for your Frontend components",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "dataSourceType": { "type": "string" },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["dataSourceType"]
+  },
+  "dynamicFilter": {
+    "description": "A dynamic filter field type that lets you specify dynamic filters for data sources and dynamic pages",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "filterType": {
+        "type": "string",
+        "description": "The type of filter to apply"
+      },
+      "value": {
+        "type": "string",
+        "description": "The value to filter by"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["filterType", "value"]
+  },
+  "encrypted": {
+    "description": "An encrypted field type for storing sensitive information",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "value": {
+        "type": "string",
+        "description": "The encrypted value"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["value"]
+  },
+  "enum": {
+    "description": "An enum field type that lets Studio users select from a predefined list of options",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "options": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of available options"
+      },
+      "default": {
+        "type": "string",
+        "description": "Default selected option"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["options"]
+  },
+  "group": {
+    "description": "A group field type that lets you group related fields together",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "fields": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "field": { "type": "string" },
+            "label": { "type": "string" }
+          },
+          "required": ["type", "field", "label"]
+        },
+        "description": "List of fields in the group"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["fields"]
+  },
+  "instant": {
+    "description": "An instant field type for date and time values",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "value": {
+        "type": "string",
+        "format": "date-time",
+        "description": "ISO 8601 formatted date and time"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["value"]
+  },
+  "json": {
+    "description": "A JSON field type for storing structured data",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "value": {
+        "type": "object",
+        "description": "The JSON object value"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "required": ["value"]
+  },
+  "markdown": {
+    "description": "A markdown field type for rich text content",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "value": {
+        "type": "string",
+        "description": "The markdown content"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["value"]
+  },
+  "media": {
+    "description": "A media field including image URL and alt text",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "url": { "type": "string", "format": "uri" },
+      "alt": { "type": "string" },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["url"]
+  },
+  "number": {
+    "description": "A number field type for numeric values",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "value": {
+        "type": "number",
+        "description": "The numeric value"
+      },
+      "min": {
+        "type": "number",
+        "description": "Minimum allowed value"
+      },
+      "max": {
+        "type": "number",
+        "description": "Maximum allowed value"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["value"]
+  },
+  "reference": {
+    "description": "A reference to another entity",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "target": { "type": "string" },
+      "id": { "type": "string" },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["target", "id"]
+  },
+  "string": {
+    "description": "A simple string field",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "value": {
+        "type": "string",
+        "minLength": 1
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "required": ["value"]
+  },
+  "text": {
+    "description": "A text field type for multi-line text content",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "value": {
+        "type": "string",
+        "description": "The text content"
+      },
+      "minLength": {
+        "type": "integer",
+        "description": "Minimum length of the text"
+      },
+      "maxLength": {
+        "type": "integer",
+        "description": "Maximum length of the text"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["value"]
+  },
+  "tree": {
+    "description": "A tree field type for hierarchical data",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "The label of the field"
+      },
+      "field": {
+        "type": "string",
+        "description": "The unique name of the field used"
+      },
+      "nodes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "label": { "type": "string" },
+            "children": { "type": "array" }
+          },
+          "required": ["id", "label"]
+        },
+        "description": "List of tree nodes"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      }
+    },
+    "requiredProperties": ["nodes"]
+  }
+}
