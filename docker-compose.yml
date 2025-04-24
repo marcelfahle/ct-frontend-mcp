@@ -1,13 +1,5 @@
-version: "3.8"
 services:
   mcp-server:
     build: .
     ports:
       - "8000:8000"
-    volumes:
-      # Mount the current directory into the container at /app
-      - .:/app
-      # Prevent node_modules from being overwritten by the host
-      - /app/node_modules
-    # Use Bun to run the TypeScript file with watch mode
-    command: ["bun", "index.ts"]

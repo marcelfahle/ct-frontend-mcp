@@ -1,14 +1,23 @@
-# Use the Bun image as the base image
-FROM oven/bun:latest
+FROM oven/bun:latest AS base
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Only copy files needed for install step first
+COPY bun.lockb* package.json tsconfig.json ./
+
+# Install dependencies (cached unless lockfile changes)
+RUN bun install
+
+# Copy rest of app
 COPY . .
 
-# Expose the port on which the API will listen
+FROM oven/bun:slim
+
+WORKDIR /app
+
+# Copy node_modules and app from previous stage
+COPY --from=base /app /app
+
 EXPOSE 8000
 
-# Run the server when the container launches
 CMD ["bun", "index.ts"]
