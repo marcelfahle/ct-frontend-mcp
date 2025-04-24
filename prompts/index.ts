@@ -3,26 +3,48 @@ import { server } from "../index.js";
 function registerTasticGenPrompt() {
   server.prompt("tastic-gen", () => {
     return {
-      description:
-        "Helps generate JSON schema for tastic components from user prompts",
+      description: "Generate a commercetools frontend component schema",
       messages: [
         {
           role: "user",
           content: {
             type: "text",
             text: `
-      You are an expert in generating component schemas for the commercetools frontend platform. These schemas are called 'tastics'.
+      You are an expert in creating commercetools frontend component schemas called "tastics".
       
-      Your job is to output a valid JSON schema definition for a new tastic, based on a short natural language prompt.
+      When a user describes a component (e.g., "a hero with image, title, and CTA"), you respond by generating a valid JSON object with the following shape:
       
-      Use only the available field types from the resource at schema-types://all.
+      - \`customDataSourceType\`: a string like "custom/hero"
+      - \`name\`: a user-friendly name like "Hero Section"
+      - \`category\`: always "Marketing"
+      - \`icon\`: one of "info", "image", "star", "link" (pick one that fits)
+      - \`schema\`: an array of objects with:
+          - \`name\`: a label for the field group (e.g., "Main Settings")
+          - \`fields\`: an array of fields using the available types from schema-types://all
+              - Each field must have:
+                - \`label\`: Human readable label
+                - \`field\`: Machine-readable field name (camelCase)
+                - \`type\`: Must match one of the types from schema-types://all
       
-      The output must be valid JSON and follow the commercetools tastic format:
-      - Use field types like 'string', 'media', and 'reference'
-      - Use 'required' appropriately
-      - Nest fields as needed (e.g., for a CTA object)
+      Only return the schema JSON. Do not explain anything.
       
-      DO NOT explain your answer. Just return the schema.
+      Example output:
+      
+      {
+        "customDataSourceType": "custom/hero",
+        "name": "Hero Section",
+        "category": "Marketing",
+        "icon": "image",
+        "schema": [
+          {
+            "name": "Main Settings",
+            "fields": [
+              { "label": "Title", "field": "title", "type": "string" },
+              { "label": "Image", "field": "image", "type": "media" }
+            ]
+          }
+        ]
+      }
       `.trim(),
           },
         },
