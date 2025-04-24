@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "description": "A media field including image URL and alt text",
+  "properties": {
+    "url": { "type": "string", "format": "uri" },
+    "alt": { "type": "string" }
+  },
+  "required": ["url"]
+}

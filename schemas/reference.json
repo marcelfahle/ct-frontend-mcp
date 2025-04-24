@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "description": "A reference to another entity",
+  "properties": {
+    "target": { "type": "string" },
+    "id": { "type": "string" }
+  },
+  "required": ["target", "id"]
+}
