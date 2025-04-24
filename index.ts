@@ -3,13 +3,21 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import express from "express";
 import { registerTools } from "./tools/index.js";
+import { registerPrompts } from "./prompts/index.js";
+import { registerResources } from "./resources/index.js";
 
-// 1) Initialize MCP Server
 export const server = new McpServer({
-  name: "Weather Service",
+  name: "Tastic Generator",
   version: "1.0.0",
+  capabilities: {
+    prompts: {},
+    resources: {},
+    tools: {},
+  },
 });
 
+registerPrompts();
+registerResources();
 registerTools();
 
 let transport: SSEServerTransport | undefined = undefined;
